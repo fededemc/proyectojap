@@ -35,6 +35,11 @@ function sortProducts(criteria, array){
     return result;
 }
 
+function setProductID(id) {
+    localStorage.setItem("ProductID", id);
+    window.location = "product-info.html"
+}
+
 let currentProductsArray = [];
 
 function showProductsList(){
@@ -50,7 +55,7 @@ function showProductsList(){
         {
 
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProductID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
