@@ -28,11 +28,31 @@ function mostrarInfoProducto(){
 
         for (let imagen of infoProducto.images){
             fotosToAppend += `
-            <img src="${imagen}" width="200">
+            <div class="carousel-item">
+            <img src="${imagen}" class="d-block w-100">
+            </div>
             `
         }
-
+        
         document.getElementById("fotos-producto").innerHTML = fotosToAppend;
+        document.getElementsByClassName('carousel-item')[0].classList.add('active');
+    
+    let productosRelacionadosToAppend = "";
+
+        for (let productoRelacionado of infoProducto.relatedProducts){
+            productosRelacionadosToAppend += `
+            <div class="col">
+                <div class="card cursor-active" style="width: 18rem;" onclick="setProductID(${productoRelacionado.id})">
+                <img class="card-img-top" src="${productoRelacionado.image}">
+                <div class="card-body">
+                  <h5 class="card-title">${productoRelacionado.name}</h5>
+                </div>
+                </div>
+            </div>
+            `
+        }
+        
+        document.getElementById("productos-relacionados").innerHTML = productosRelacionadosToAppend;
 }
 
 let idProducto = localStorage.getItem("ProductID");
@@ -60,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 function mostrarComentarios(){
 
     let comentariosToAppend = "";
-    comentariosToAppend += `<hr><h2 class="mt-5 mb-5">Comentarios</h2>`;
+    comentariosToAppend += `<hr><h2 class="mt-5 mb-2">Comentarios</h2>`;
 
         for (comentario of comentariosProducto){
 
@@ -110,8 +130,10 @@ function mostrarComentarios(){
             }
 
             comentariosToAppend += `
+            <div class="border">
             <p><b>${comentario.user}</b> - ${comentario.dateTime} - ${estrellas(comentario.score)}</p>
             <p>${comentario.description}</p>
+            </div>
             `
         }
 
@@ -135,3 +157,11 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
 });
+
+let formularioAgregarComentario = document.getElementById("agregar-comentario");
+
+formularioAgregarComentario.addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Funcionalidad en desarrollo.");
+});
+

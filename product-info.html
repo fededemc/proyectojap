@@ -40,12 +40,55 @@
 
     <div class="container" id="info-producto">
       </div>
-    <div class="container" id="fotos-producto">
+
+    <div class="container">    
+      <div class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="fotos-producto-original"></div>   
       </div>
+    </div>
+
+    <div class="container">
+      <div id="carouselExampleInterval" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="fotos-producto">
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </div>
+
     <div class="container" id="comentarios-producto">
       </div>
 
+    <div class="container">
+      <h2 class="mt-2 mb-2">Comentar</h2>
+      <form action="" id="agregar-comentario">
+        <label for="opinion" class="mt-2">Tu opinión:</label>
+        <textarea class="form-control w-50" id="opinion" name="opinion" rows="3"></textarea>
+        <label for="puntuacion" class="mt-2">Tu puntuación:</label>
+        <select class="form-select w-25" id="puntuacion">
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input class="btn btn-primary mt-2" type="submit" value="Enviar comentario">
+      </form>
+      <hr>
+
     </div>
+
+    <div class="container">
+      <h2 class="mt-2 mb-4">Productos Relacionados</h2>
+      <div id="productos-relacionados" class="row row-cols-2 row-cols-md-3 xl-4"></div>
+    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

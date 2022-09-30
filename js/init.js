@@ -45,5 +45,26 @@ let liUsuarioNavbar = document.getElementById("li-usuario");
 let usuarioLogueado = localStorage.getItem("Usuario");
 
 document.addEventListener("DOMContentLoaded", function(e){
-  liUsuarioNavbar.innerHTML = `<a class="nav-link">${usuarioLogueado}</a>`;
+  liUsuarioNavbar.innerHTML = `
+  <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+       ${usuarioLogueado}
+      </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+      <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+      <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar sesión</a></li>
+    </ul>
+  </div>
+`;
 });
+
+function setProductID(id) {
+  localStorage.setItem("ProductID", id);
+  window.location = "product-info.html"
+}
+
+function cerrarSesion(){
+  localStorage.removeItem('Usuario');;
+  window.location = "index.html"
+}

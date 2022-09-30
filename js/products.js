@@ -35,11 +35,6 @@ function sortProducts(criteria, array){
     return result;
 }
 
-function setProductID(id) {
-    localStorage.setItem("ProductID", id);
-    window.location = "product-info.html"
-}
-
 let currentProductsArray = [];
 
 function showProductsList(){
