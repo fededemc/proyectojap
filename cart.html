@@ -67,43 +67,154 @@
     </div>
 
     <div class="container w-75">
-      <form id="tipo-envio">
-        <h3 class="my-4">Tipo de envío</h3>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoEnvio" id="envioPremium">
-            <label class="form-check-label" for="envioPremium">
-              Premium 2 a 5 días (15%)
-            </label>
+
+      <div class="container">
+        <form id="pagar">
+          <h3 class="my-4">Tipo de envío</h3>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipoEnvio" id="envioPremium">
+              <label class="form-check-label" for="envioPremium">
+                Premium 2 a 5 días (15%)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipoEnvio" id="envioExpress">
+              <label class="form-check-label" for="envioExpress">
+                Express 5 a 8 días (7%)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipoEnvio" id="envioStandard">
+              <label class="form-check-label" for="envioStandard">
+                Standard 12 a 15 días (5%)
+              </label>
+            </div>
+          <h3 class="my-4">Dirección de envío</h3>
+          <div class="d-flex flex-wrap">
+            <div class="form-floating mb-3 w-50">
+              <input type="text" class="form-control" id="formCalle" placeholder="Calle">
+              <label for="formCalle">Calle</label>
+            </div>
+            <div class="form-floating mx-2 mb-3 w-25">
+              <input type="text" class="form-control" id="formNumero" placeholder="Número">
+              <label for="formNumero">Número</label>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoEnvio" id="envioExpress">
-            <label class="form-check-label" for="envioExpress">
-              Express 5 a 8 días (7%)
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoEnvio" id="envioStandard">
-            <label class="form-check-label" for="envioStandard">
-              Standard 12 a 15 días (5%)
-            </label>
-          </div>
-        <h3 class="my-4">Dirección de envío</h3>
-        <div class="d-flex flex-wrap">
-          <div class="form-floating mb-3 w-50">
-            <input type="text" class="form-control" id="formCalle" placeholder="Calle">
-            <label for="formCalle">Calle</label>
-          </div>
-          <div class="form-floating mx-2 mb-3 w-25">
-            <input type="text" class="form-control" id="formNumero" placeholder="Número">
-            <label for="formNumero">Número</label>
-          </div>
+            <div class="form-floating mb-3 w-50">
+              <input type="text" class="form-control" id="formEsquina" placeholder="Esquina">
+              <label for="formEsquina">Esquina</label>
+            </div>
+        </form>
+        <hr class="my-4">
+      </div>
+
+      <div class="container">
+        <h3>Costos</h3>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Subtotal</div>
+              Costo unitario del producto por cantidad
+            </div>
+            <div id="subtotal-inicial">USD 1400</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Costo de envío</div>
+              Según el tipo de envío
+            </div>
+            <div id="costo-envio">14</div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Total a pagar</div>
+            </div>
+            <div class="fw-bold" id="total-a-pagar">USD 1500</div>
+          </li>
+        </ul>
+        <hr class="my-4">
+      </div>
+
+      <div class="container">
+        <h3 class="mb-4">Forma de pago</h3>
+          <p id="pago-seleccionado">.</p>
+          <div class="col-sm-12 mb-4">
+ 
+                <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+                  data-bs-target="#modalPagos" id="seleccionar-pago" name="">Elegir forma de pago</button>
+                <div class="invalid-feedback" id="error-forma-pago">
+                  Debe seleccionar una forma de pago.
+                </div>
+ 
+ 
+              <div class="modal fade" id="modalPagos" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5"><b>Forma de pago</b></h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="metodoPago" id="tarjeta">
+                        <label class="form-check-label" for="tarjeta">
+                          Tarjeta de crédito
+                        </label>
+                        <hr class="my-2">
+                        
+                          <label for="basic-url" class="form-label">Número de tarjeta</label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="numero-tarjeta" maxlength="19">
+                          </div>
+                          <label for="basic-url" class="form-label">Código de seg.</label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="codigo-tarjeta" maxlength="3">
+                          </div>
+                        
+                          <label for="basic-url" class="form-label">Vencimiento (MM/AA)</label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="vencimiento-tarjeta" maxlength="5">
+                          </div>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="metodoPago" id="transferencia">
+                        <label class="form-check-label" for="transferencia">
+                          Transferencia bancaria
+                        </label>
+                        <hr class="my-2">
+                          <label for="basic-url" class="form-label">Número de cuenta</label>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="numero-cuenta-transferencia">
+                          </div>
+
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="terminos" required>
+                        <label class="form-check-label" for="terminos">Acepto los términos y condiciones del
+                          servicio.</label>
+                        <div class="invalid-feedback">
+                          Debe aceptar los terminos del servicio.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+ 
+            </div>
+      </div>
+
+      <div class="container">
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit" id="boton-finalizar-compra">Finalizar compra</button>
         </div>
-          <div class="form-floating mb-3 w-50">
-            <input type="text" class="form-control" id="formEsquina" placeholder="Esquina">
-            <label for="formEsquina">Esquina</label>
-          </div>
-      </form>
-      <hr>
+      </div>
+
     </div>
 
   </main>
