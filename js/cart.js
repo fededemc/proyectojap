@@ -13,7 +13,7 @@ function mostrarCarrito(){
             <td><img src="${infoCarrito.image}" height="50"></td>
             <td>${infoCarrito.name}</td>
             <td>${infoCarrito.currency} ${infoCarrito.unitCost}</td>
-            <td><input id="cantidad`+ [i + 1] + `" type="number" value="${infoCarrito.count}" min="0" onchange="calcularSubtotal()"></td>
+            <td><input id="cantidad`+ [i + 1] + `" type="number" value="${infoCarrito.count}" min="1" onchange="calcularSubtotal()"></td>
             <td id="subtotal` + [i + 1] + `">${infoCarrito.unitCost*infoCarrito.count}</td>
             </tr>
             `
@@ -50,6 +50,7 @@ function calcularSubtotal() {
     divTotalAPagar.innerHTML = `USD ` + (subTotalProducto + subTotalProducto*comisionEnvio);
 }
 
+let divMensajeExitoso = document.getElementById("mensaje-exitoso");
 
 // Fetch del carrito
 
@@ -65,6 +66,8 @@ function calcularSubtotal() {
             }
 
         });
+
+        divMensajeExitoso.style.visibility = 'hidden';      // Hide
 
         inputEnvioPremium.addEventListener("change", function(e){
             comisionEnvio = 0.15;
@@ -97,6 +100,7 @@ radioTarjeta.addEventListener("click", function(e){
     inputCodigoSegTarjeta.disabled = false;
     inputVencimientoTarjeta.disabled = false;
     inputNumTransferencia.disabled = true;
+    pErrorFormaPago.innerHTML = ``;
 });
 
 radioTransferencia.addEventListener("click", function(e){
@@ -104,6 +108,7 @@ radioTransferencia.addEventListener("click", function(e){
     inputNumTarjeta.disabled = true;
     inputCodigoSegTarjeta.disabled = true;
     inputVencimientoTarjeta.disabled = true;
+    pErrorFormaPago.innerHTML = ``;
 });
 
 inputNumTarjeta.addEventListener("input", (e)=>{
@@ -123,3 +128,67 @@ inputVencimientoTarjeta.addEventListener("input", (e)=>{
         e.target.value += "/";
     }
 });
+
+// Validación del formulario
+
+let botonFinalizarCompra = document.getElementById("boton-finalizar-compra");
+let formularioPagar = document.getElementById('pagar');
+let inputCalle = document.getElementById("formCalle");
+let inputNumero = document.getElementById("formNumero");
+let inputEsquina = document.getElementById("formEsquina");
+let botonSeleccionarPago = document.getElementById("seleccionar-pago");
+let pErrorFormaPago = document.getElementById("pago-seleccionado");
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            validacionMetodoPago()
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+          event.preventDefault()
+          mostrarExitoso()
+        }, false)
+      })
+  })();
+
+    function validacionMetodoPago() {
+        if (radioTarjeta.checked || radioTransferencia.checked){
+            return true;
+        }
+        else {
+            pErrorFormaPago.innerHTML = `Debe seleccionar una forma de pago.`;
+        };
+    }
+
+    function  viejo() {
+            return divMensajeExitoso.style.visibility = 'visible';
+            setTimeout(() => {
+                divMensajeExitoso.style.visibility = 'hidden';      // Ocultar mensaje exitoso luego de 3 segundos;
+            }, "3000");
+    }
+
+    function mostrarExitoso(){
+        if ((inputCalle != "" && inputNumero != "" && inputEsquina != "")
+            && validacionMetodoPago()
+            && (inputEnvioPremium.checked || inputEnvioExpress.checked || inputEnvioStandard.checked)
+            && ((inputNumTarjeta.value != "" && inputCodigoSegTarjeta.value != "" && inputVencimientoTarjeta !="")
+            || (inputNumTransferencia.value != ""))){
+            divMensajeExitoso.style.visibility = 'visible';
+            setTimeout(() => {
+                divMensajeExitoso.style.visibility = 'hidden';      // Ocultar mensaje exitoso luego de 3 segundos;
+            }, "3000");
+        }
+    }
