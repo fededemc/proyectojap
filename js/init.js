@@ -41,6 +41,10 @@ let getJSONData = function(url){
     });
 }
 
+if (!localStorage.getItem('Usuario')) {
+    window.location = "login.html";
+}
+
 let liUsuarioNavbar = document.getElementById("li-usuario");
 let usuarioLogueado = localStorage.getItem("Usuario");
 
@@ -66,5 +70,5 @@ function setProductID(id) {
 
 function cerrarSesion(){
   localStorage.removeItem('Usuario');;
-  window.location = "index.html"
+  window.location = "login.html"
 }

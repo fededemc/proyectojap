@@ -173,15 +173,10 @@ let pErrorFormaPago = document.getElementById("pago-seleccionado");
         };
     }
 
-    function  viejo() {
-            return divMensajeExitoso.style.visibility = 'visible';
-            setTimeout(() => {
-                divMensajeExitoso.style.visibility = 'hidden';      // Ocultar mensaje exitoso luego de 3 segundos;
-            }, "3000");
-    }
+    
 
     function mostrarExitoso(){
-        if ((inputCalle != "" && inputNumero != "" && inputEsquina != "")
+        if ((inputCalle.value != "" && inputNumero.value != "" && inputEsquina.value != "")
             && validacionMetodoPago()
             && (inputEnvioPremium.checked || inputEnvioExpress.checked || inputEnvioStandard.checked)
             && ((inputNumTarjeta.value != "" && inputCodigoSegTarjeta.value != "" && inputVencimientoTarjeta !="")
