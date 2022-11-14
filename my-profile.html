@@ -74,6 +74,7 @@
             <div class="col-md-6">
               <label for="inputPrimerNombre" class="form-label">Primer nombre*</label>
               <input type="text" class="form-control" id="inputPrimerNombre" required>
+              <div id="mensaje-primer-nombre" style="color:red"></div>
             </div>
             <div class="col-md-6">
               <label for="inputSegundoNombre" class="form-label">Segundo nombre</label>
@@ -82,6 +83,7 @@
             <div class="col-md-6">
               <label for="inputPrimerApellido" class="form-label">Primer apellido*</label>
               <input type="text" class="form-control" id="inputPrimerApellido" required>
+              <div id="mensaje-primer-apellido" style="color:red"></div>
             </div>
             <div class="col-md-6">
               <label for="inputSegundoApellido" class="form-label">Segundo apellido</label>
@@ -90,18 +92,18 @@
             <div class="col-md-6">
               <label for="inputEmail" class="form-label">Email*</label>
               <input type="email" class="form-control" id="inputEmail" required>
+              <div id="mensaje-email" style="color:red"></div>
             </div>
             <div class="col-md-6">
               <label for="inputImagenPerfil" class="form-label">Imagen de perfil</label>
-              <input type="file" class="form-control" id="inputImagenPerfil">
+              <input type="file" class="form-control" id="inputImagenPerfil" disabled>
             </div>
             <div class="col-md-6">
               <label for="inputTelefono" class="form-label">Teléfono de contacto</label>
               <input type="number" class="form-control" id="inputTelefono">
             </div>
-            
             <div class="col-12">
-              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+              <button type="submit" class="btn btn-primary" id="botonGuardarPerfil">Guardar cambios</button>
             </div>
           </form>
         </div>

@@ -69,6 +69,7 @@ function setProductID(id) {
 }
 
 function cerrarSesion(){
-  localStorage.removeItem('Usuario');;
+  localStorage.removeItem('Usuario');
+  localStorage.removeItem('datosUsuario');
   window.location = "login.html"
 }
